@@ -1,5 +1,5 @@
 import './App.css';
-import NavBar from './Components/Navbar';
+import NavBar from './Components/NavBar';
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from './Components/Register';
@@ -10,7 +10,7 @@ import {useState, createContext} from "react";
 export const DataContext=createContext("");
 
 
-function App() {
+export default function App() {
   const [logStatus,setLogStatus]=useState(0);
   //Making login status global 
   var login=0; 
@@ -42,4 +42,3 @@ function App() {
   )
 }
 
-export default App

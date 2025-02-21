@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../App"; 
 
 export default function Register() {
+    const { setLogStatus } = useContext(DataContext); 
+
     const [fName, setfName] = useState("");
     const [lName, setlName] = useState("");
     const [id, setId] = useState("");
@@ -38,6 +41,7 @@ export default function Register() {
         ) : (
             <div>
             <h1>Sign Up</h1>
+            <form action="" method="post">
             <div className="grid-form">
                 
                 <div>
@@ -63,11 +67,12 @@ export default function Register() {
 
                     <label> City</label>
                     <br></br>
-                    <select className="fields" name="city" id="city" value={city} onChange={(e) => setCity(e.target.value)}>
-                        <option value="Columbia">Columbia</option>
-                        <option value="Greenvile">Greenville</option>
-                        <option value="Greenwood">Greenwood</option>
-                        <option value="Orangeburg">Orangeburg</option>
+                    <select className="fields" name="city" id="city" onChange={(e) => setCity(e.target.value)}>
+                        <option value="-1">Select a city</option>
+                        <option value="1">Columbia</option>
+                        <option value="2">Greenville</option>
+                        <option value="3">Greenwood</option>
+                        <option value="4">Orangeburg</option>
                     </select>
                     <br></br><br></br>
                 </div>
@@ -99,6 +104,7 @@ export default function Register() {
             </div>
         
         </div>
+        </form>
         </div>
         )}
     </div>
