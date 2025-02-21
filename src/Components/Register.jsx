@@ -34,26 +34,9 @@ export default function Register() {
     function submit(){
         if(validate()){
             setIsRegistered(true);
-            alert("Registration successful!",
-                "\nName: {fName},{lName}\nUsername: {uName}\nEmail:{email}\nCity:{city}\nZip Code: {zip}"
-                );
-        }
-    }
-
-   
-
-    return (
-        <div className="regDiv">
-        {isRegistered ? (
-            <div>
-                <h2>Registration Successful! </h2>
-                <br></br>
-                <p>Welcome to the site, {uName}!</p>
-                
-            </div>
-        
-        ) : (
-            <div>
+            let successAlert = "Registration successful!\nName: ${fName} ${lName}
+                \nUsername: ${uName}
+                \nEmail: ${email}
             <h1>Sign Up</h1>
             <form action="" method="post">
             <div className="grid-form">
