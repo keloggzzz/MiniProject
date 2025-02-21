@@ -18,12 +18,26 @@ export default function Register() {
 
 
 
-    function submit(){
+    function validate(){
+        if (!fName || !lName || !id || !email || !city || !zip || !uName || !pwd || !confirmPwd) {
+            alert("Please fill out all fields."); //Checks that all fields are filled 
+            return false;
+        }
     if (pwd !== confirmPwd) {
-        alert("Passwords do not match."); //How to validate values??
+        alert("Passwords do not match."); //Checks that passwords match
+        return false;
     }
     else
-        setIsRegistered(true);
+       return true;
+    }
+
+    function submit(){
+        if(validate()){
+            setIsRegistered(true);
+            alert("Registration successful!",
+                "\nName: {fName},{lName}\nUsername: {uName}\nEmail:{email}\nCity:{city}\nZip Code: {zip}"
+                );
+        }
     }
 
    
@@ -34,7 +48,7 @@ export default function Register() {
             <div>
                 <h2>Registration Successful! </h2>
                 <br></br>
-                <p>Welcome to the site, {fName}!</p>
+                <p>Welcome to the site, {uName}!</p>
                 
             </div>
         
