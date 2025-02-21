@@ -33,10 +33,30 @@ export default function Register() {
 
     function submit(){
         if(validate()){
-            setIsRegistered(true);
-            let successAlert = "Registration successful!\nName: ${fName} ${lName}
-                \nUsername: ${uName}
-                \nEmail: ${email}
+            setIsRegistered(true); //successfully registered
+            alert(`Registration successful!\n
+                Name: ${fName} ${lName}
+                Username: ${uName}
+                Email: ${email}
+                City: ${city}
+                Zip Code: ${zip}`);
+        }
+    }
+
+   
+
+    return (
+        <div className="regDiv">
+        {isRegistered ? ( //Check if the user is registered
+            <div>
+                <h2>Registration Successful! </h2>
+                <br></br>
+                <p>Welcome to The Site, {uName}!</p>
+                
+            </div>
+        
+        ) : (
+            <div>
             <h1>Sign Up</h1>
             <form action="" method="post">
             <div className="grid-form">
@@ -65,11 +85,11 @@ export default function Register() {
                     <label> City</label>
                     <br></br>
                     <select className="fields" name="city" id="city" onChange={(e) => setCity(e.target.value)}>
-                        <option value="-1">Select a city</option>
-                        <option value="1">Columbia</option>
-                        <option value="2">Greenville</option>
-                        <option value="3">Greenwood</option>
-                        <option value="4">Orangeburg</option>
+                        <option value="Select">Select a city</option>
+                        <option value="Columbia">Columbia</option>
+                        <option value="Greenville">Greenville</option>
+                        <option value="Greenwood">Greenwood</option>
+                        <option value="Orangeburg">Orangeburg</option>
                     </select>
                     <br></br><br></br>
                 </div>
