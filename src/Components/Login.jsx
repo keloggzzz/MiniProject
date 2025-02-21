@@ -1,0 +1,55 @@
+import {useState, useContext} from "react";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCircleUser} from '@fortawesome/free-solid-svg-icons'
+
+export default function Login(){
+const [uname,setUname]=useState("");
+const [pwd, setPwd]=useState("");
+const[loginSt,setLogin]=useState((sessionStorage.getItem("logged")!=null?sessionStorage.getItem("logged"):0));
+
+function check(){
+    if(uname.trim()==="" || pwd.trim() === ""){
+            alert("Please fill out both fields.");
+    }
+
+    else if(uname.trim()==="user1"  && pwd.trim() === "test"){
+    setLogin(1);
+    sessionStorage.setItem("logged",1); //shared in session rather than component. It is "global"
+    }
+
+    else{
+    alert("Invalid credentials");
+    }
+}
+
+function logout(){
+  setLogin(0);
+  sessionStorage.setItem("logged", 0);
+}
+
+var login=<div className="loginDiv">
+   <FontAwesomeIcon icon={faCircleUser} size="5x" /><br></br><br></br>
+   Username:
+   <input className="fields" type="text" id="uname" value={uname} onChange={(e)=>{setUname(e.target.value)}}/>
+   <br></br><br></br>
+   
+   Password:
+   <input className="fields" type="password" id="pwd" value={pwd} onChange={(e)=>{setPwd(e.target.value)}}/>
+  <br></br><br></br>
+
+  <input className="button" type="button" value="Login" onClick={check}/>
+</div>
+
+
+var logoutUser=<div>
+You are logged in.
+<br></br>
+<input className="button" type="button" value="Logout?" onClick={logout}/>
+</div>
+  return(
+
+    <div>
+       <div>{loginSt==0?login:logoutUser}</div>
+    </div>
+  );
+}
