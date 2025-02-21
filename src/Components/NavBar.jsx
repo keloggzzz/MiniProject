@@ -13,10 +13,10 @@ export default function NavBar(){
     <div>
     <ul>
       <li><a href="/Home">Home</a></li>
-       <li><a href="/something">Something</a></li>
-       <li><a href="/something">Something</a></li>
-       <li><a href="/something">Something</a></li>
-       <li><a href="/something">Something</a></li>
+       <li><a href="/Something">Something</a></li>
+       <li><a href="/Something">Something</a></li>
+       <li><a href="/Something">Something</a></li>
+       <li><a href="/Something">Something</a></li>
        
        {logStatus?(
          <li className="pushRight">

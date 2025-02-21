@@ -3,6 +3,7 @@ import NavBar from './Components/NavBar';
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from './Components/Register';
+import Something from './Components/Something';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useState, createContext} from "react";
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/*" element={<Home/>}/>
             <Route path="/Login" element={<Login/>}/>
             <Route path="/Register" element={<Register/>}/>
+            <Route path="/Something" element={<Something/>}/>
           </Routes>
         </BrowserRouter>
     </div>
