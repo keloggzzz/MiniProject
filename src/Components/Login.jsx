@@ -12,12 +12,13 @@ const[loginSt,setLogin]=useState((sessionStorage.getItem("logged")!=null?session
 function check(){
     if(uname.trim()==="" || pwd.trim() === ""){
             alert("Please fill out both fields.");
-
+            return;
+    
     }if(uname.trim()==="user1"  && pwd.trim() === "test"){
-    sessionStorage.setItem("logged",1); //shared in session rather than component. It is "global"
+    sessionStorage.setItem("logged",1); 
     setLogin(1);
 
-    }else{
+    } else{
     alert("Invalid credentials");
     }
 }
@@ -38,12 +39,12 @@ var login=<div className="loginDiv">
    <input className="fields" type="password" id="pwd" value={pwd} placeholder="Enter password" onChange={(e)=>{setPwd(e.target.value)}}/>
   <br></br><br></br>
 
-  <input className="button" type="button" value="Login" onClick={check}/>
+  <input className="button" type="button" value="Sign in" onClick={check}/>
 </div>
 
 
 var logoutUser=<div>
-You are logged in!
+<h2 className="text-pink-500">You are logged in!</h2>
 <br></br>
 </div>
   return(

@@ -31,7 +31,7 @@ export default function Register() {
                 return false;
         }
 
-        // ID must be numeric
+        // ID validation
         if (isNaN(id) || id === "") {
             alert("ID must be numeric.");
             return false;
@@ -44,7 +44,7 @@ export default function Register() {
                 return false;
         }
 
-        // Zip must be numeric
+        // Zip validation
         if (isNaN(zip) || zip === "") {
                 alert("Zip Code must be numeric.");
                 return false;
@@ -57,8 +57,8 @@ export default function Register() {
                 return false;
         }
 
-        // Password must at least 10 characters long, with at least one uppercase, one lowercase, and one digit
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{10,}$/;
+        // Password validation. Allowing special characters 
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@#$%^&*!]{10,}$/;
                 if (!passwordRegex.test(pwd)) {
                 alert("Password must be at least 10 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.");
         return false;
@@ -98,7 +98,7 @@ var regConfirmation=<div className="regDiv">
     <div>
         <h2>Registration Successful! </h2>
         <br></br>
-        <p>Welcome to The Site, {uName}!</p>
+        <p>Welcome to PixelPop, {uName}!</p>
         
     </div>
 </div>
@@ -108,7 +108,7 @@ var regForm=<div className="regDiv">
     <form action="" method="post">
     <div className="grid-form">
         
-        <div>
+        <div id="col1">
             <label> First Name</label>
             <br></br>
             <input className="fields" type="text" id="fName" value={fName} placeholder="Enter your first name" onChange={(e) => setfName(e.target.value)} />
@@ -121,7 +121,7 @@ var regForm=<div className="regDiv">
 
             <label> ID</label>
             <br></br>
-            <input className="fields" type="number" id="id" value={id} placeholder="Enter your ID number" onChange={(e) => setId(e.target.value)} />
+            <input className="fields" type="text" id="id" value={id} placeholder="Enter your ID number" onChange={(e) => setId(e.target.value)} />
             <br></br><br></br>
 
             <label> Email</label>
@@ -132,7 +132,7 @@ var regForm=<div className="regDiv">
             <label> City</label>
             <br></br>
             <select className="fields" name="city" id="city" onChange={(e) => setCity(e.target.value)}>
-                <option value="Select">Select a city</option>
+                <option value=""disabled selected>Select a city</option>
                 <option value="Columbia">Columbia</option>
                 <option value="Greenville">Greenville</option>
                 <option value="Greenwood">Greenwood</option>
@@ -140,10 +140,11 @@ var regForm=<div className="regDiv">
             </select>
             <br></br><br></br>
         </div>
-        <div>
+
+        <div id="col2">
             <label> Zip Code</label>
             <br></br>
-            <input className="fields" type="number" id="zip" value={zip} placeholder="Enter your zip code" onChange={(e) => setZip(e.target.value)} />
+            <input className="fields" type="text" id="zip" value={zip} placeholder="Enter your zip code" onChange={(e) => setZip(e.target.value)} />
             <br></br><br></br>
 
             <label> Username </label>

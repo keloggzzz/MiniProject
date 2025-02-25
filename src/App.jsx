@@ -3,7 +3,8 @@ import NavBar from './Components/NavBar';
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from './Components/Register';
-import Something from './Components/Something';
+import About from './Components/About';
+import {items} from "./Model/items.json"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useState, createContext} from "react";
@@ -18,10 +19,11 @@ export default function App() {
      login=sessionStorage.getItem("logged")
    }
    const [logStatus,setLogStatus]=useState(login);
+   const [itemlist,setItemList]=useState(items);
  
   return (
     <>
-    <DataContext.Provider value={{logStatus:logStatus, setLogStatus:setLogStatus}}>
+    <DataContext.Provider value={{logStatus:logStatus, setLogStatus:setLogStatus, itemlist:itemlist, setItemList:setItemList}}>
     <div>
     <NavBar />
     <br></br>
@@ -32,7 +34,7 @@ export default function App() {
             <Route path="/*" element={<Home/>}/>
             <Route path="/Login" element={<Login/>}/>
             <Route path="/Register" element={<Register/>}/>
-            <Route path="/Something" element={<Something/>}/>
+            <Route path="/About" element={<About/>}/>
           </Routes>
         </BrowserRouter>
     </div>

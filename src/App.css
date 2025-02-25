@@ -5,61 +5,36 @@
   text-align: center;
 }
 body{
-  background-color: var(--color-blue-50);
- 
+  background-color: var(--color-zinc-800);
+  font-family: var(--font-serif);
   
-
 }
 label{
   margin: 5px 0 px 0;
 }
 
 h1{
-  color: var(--color-gray-950);
-  font-family: Arial;
+  color: var(--color-pink-500);
   text-align: center;
   font-size: 50px;
-  border-color: var(--color-gray-950);
-  border-width: 5px;
-  border-radius: 15px;
-  background-color: var(--color-blue-200);
+  background-color: var(--color-pink-200);
 }
 
 h4{font-size: 12px;}
 
 
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: var(--color-blue-200);
-  border-color: var(--color-gray-800);
-  border-width: 2px;
-  width: 100vw;
-}
-
-.pushRight {
-  float:right; /* Pushes everything after it to the right. For login and register */
-}
-
-li {
-  color: var(--color-gray-800);
-  float:left; /*aligns list horizontally to the left*/
-}
-
 div a { /*styling for each link*/
-  background-color: var(--color-blue-200);
+  background-color: var(--color-pink-200);
   color: var(--color-gray-800);
   text-align: center;
-  padding: 12px 20px;
+  padding: 10px 20px;
   text-decoration: none;
 }
 
 /* Change the link block to black on hover */
 div a:hover {
-  background-color: var(--color-blue-300);
+  background-color: var(--color-pink-400);
 }
 
 
@@ -67,8 +42,8 @@ div a:hover {
   margin-left: auto;
   margin-right: auto;
   font-size: 20px;
-  background-color: var(--color-blue-200);
-  border-color: black;
+  background-color: var(--color-pink-200);
+  border-color: var(--color-pink-500);
   border-style:solid;
   border-width: 5px;
   border-radius: 5%;
@@ -76,13 +51,15 @@ div a:hover {
   height: auto;
   width: 30%;
   float: center; 
+  font-family: var(--font-mono);
 }
 
 .regDiv{
   margin-left: auto;
   margin-right: auto;
   font-size: 20px;
-  border-color: var(--color-gray-950);
+  background-color: var(--color-pink-200);
+  border-color: var(--color-pink-500);
   border-style:solid;
   border-width: 5px;
   border-radius: 5%;
@@ -90,6 +67,7 @@ div a:hover {
   height: auto;
   width: 50%;
   float: center; 
+  font-family: var(--font-mono);
 }
 
 .regButtonDiv{
@@ -109,22 +87,24 @@ div a:hover {
   border-color: var(--color-gray-950);
   border-style:solid;
   border-width: 3px;
+  color: var(--color-pink-500);
   
 }
 
 .button {
-  background-color: var(--color-gray-800);
+  background-color: var(--color-pink-300);
   border: solid;
   border-width: 1px;
   border-color: var(--color-gray-950);
-  color: var(--color-gray-50);
+  color: var(--color-gray-950);
   padding: 12px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  font-family: var(--font-mono);
 }
 
 .button:hover{
-    background-color: var(--color-gray-950);
+    background-color: var(--color-pink-400);
 }

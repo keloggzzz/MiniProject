@@ -2,29 +2,28 @@
 "items":[
     {
         "id": 1,
-        "Name": "Item 1",
-        "Description": "A super awesome item"
+        "name": "Crafter Pack",
+        "desc": "A pack full with all the items you need to create things.",
+        "img":"https://img.freepik.com/premium-vector/working-mining-tools-pixel-art-set-repair-equipment-collection-8-bit-sprite_418367-376.jpg?ga=GA1.1.298569360.1740524051&semt=ais_hybrid"
     },
 
     {
         "id": 2,
-        "Name": "Item 2",
-        "Description": "A super cool item"
+        "name": "Random Things",
+        "desc": "You'll find some use in them for sure...",
+        "img": "https://img.freepik.com/premium-vector/colorful-pixel-game-items-collection_573660-4.jpg?ga=GA1.1.298569360.1740524051&semt=ais_hybrid"
     },
     {
         "id": 3,
-        "Name": "Item 3",
-        "Description": "A fantabulous item"
+        "name": "Sweet Treats",
+        "desc": "You might not need them, but they sure do taste good!",
+        "img":"https://img.freepik.com/free-vector/flat-design-pixel-art-food-illustration_23-2150208872.jpg?ga=GA1.1.298569360.1740524051&semt=ais_hybrid"
     },
     {
         "id": 4,
-        "Name": "Item 4",
-        "Description": "An illustrious item"
-    },
-    {
-        "id": 5,
-        "Name": "Item 5",
-        "Description": "An exclusive super duper item"
+        "name": "Farmer's Starter Kit",
+        "desc": "All the essentials to begin a small farm.",
+        "img": "https://img.freepik.com/premium-vector/pixel-art-set-farm-animals-garden-tools_434079-674.jpg?ga=GA1.1.298569360.1740524051&semt=ais_hybrid"
     }
   ]
 }
