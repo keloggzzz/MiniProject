@@ -6,7 +6,7 @@
 }
 body{
   background-color: var(--color-zinc-800);
-  font-family: var(--font-serif);
+  font-family: var(--font-mono);
   
 }
 label{
