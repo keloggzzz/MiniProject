@@ -1,0 +1,30 @@
+{
+"items":[
+    {
+        "id": 1,
+        "Name": "Item 1",
+        "Description": "A super awesome item"
+    },
+
+    {
+        "id": 2,
+        "Name": "Item 2",
+        "Description": "A super cool item"
+    },
+    {
+        "id": 3,
+        "Name": "Item 3",
+        "Description": "A fantabulous item"
+    },
+    {
+        "id": 4,
+        "Name": "Item 4",
+        "Description": "An illustrious item"
+    },
+    {
+        "id": 5,
+        "Name": "Item 5",
+        "Description": "An exclusive super duper item"
+    }
+  ]
+}

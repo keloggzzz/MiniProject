@@ -7,15 +7,15 @@ export default function Login(){
 const [uname,setUname]=useState("");
 const [pwd, setPwd]=useState("");
 const[loginSt,setLogin]=useState((sessionStorage.getItem("logged")!=null?sessionStorage.getItem("logged"):0));
-const {setLogStatus} = useContext(DataContext); 
+
 
 function check(){
     if(uname.trim()==="" || pwd.trim() === ""){
             alert("Please fill out both fields.");
 
-    }else if(uname.trim()==="user1"  && pwd.trim() === "test"){
-    setLogin(1);
+    }if(uname.trim()==="user1"  && pwd.trim() === "test"){
     sessionStorage.setItem("logged",1); //shared in session rather than component. It is "global"
+    setLogin(1);
 
     }else{
     alert("Invalid credentials");
@@ -23,8 +23,9 @@ function check(){
 }
 
 function logout(){
-  setLogin(0);
   sessionStorage.setItem("logged", 0);
+  setLogin(0);
+  
 }
 
 var login=<div className="loginDiv">
@@ -42,9 +43,8 @@ var login=<div className="loginDiv">
 
 
 var logoutUser=<div>
-You are logged in.
+You are logged in!
 <br></br>
-<input className="button" type="button" value="Logout?" onClick={logout}/>
 </div>
   return(
 

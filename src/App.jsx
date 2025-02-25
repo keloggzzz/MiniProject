@@ -12,19 +12,16 @@ export const DataContext=createContext("");
 
 
 export default function App() {
-  const [logStatus,setLogStatus]=useState(0);
   //Making login status global 
   var login=0; 
    if(sessionStorage.getItem("logged") != null){
      login=sessionStorage.getItem("logged")
    }
+   const [logStatus,setLogStatus]=useState(login);
  
   return (
     <>
     <DataContext.Provider value={{logStatus:logStatus, setLogStatus:setLogStatus}}>
-    <h1>
-    The Site
-    </h1>
     <div>
     <NavBar />
     <br></br>
