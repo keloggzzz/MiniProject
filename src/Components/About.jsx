@@ -3,7 +3,7 @@ import about from "../Model/aboutText.json";
 export default function About(){
     return(
           <>
-        
+        <br></br><br></br>
         <h2 className="text-pink-400">About us</h2>
             <br></br>
         <div className="aboutUs">

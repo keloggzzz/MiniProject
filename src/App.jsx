@@ -27,7 +27,7 @@ export default function App() {
     <div>
     <Header/>
     <NavBar />
-    <br></br>
+    <br></br><br></br><br></br>
       </div>
     <div className='text-center text-3xl'>
         <BrowserRouter>
