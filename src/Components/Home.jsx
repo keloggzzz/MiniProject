@@ -13,8 +13,11 @@ export default function Home(){
 
 return(
       <div>
-                <h1 className="italic">The Pop Shop</h1>
-                <h2 className="text-2xl text-pink-500">There are currently {length} items available:</h2>
+        <br></br>
+                <div className="text-pink-500 text-left">Welcome to PixelPop! </div>
+                <br></br>
+                <h1 className="italic border-2 rounded-lg">Featured Items</h1>
+                <h2 className="text-xl italic text-pink-500">These {length} items are currently trending :</h2>
                 <br></br>
        
 
