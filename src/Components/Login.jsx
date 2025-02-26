@@ -6,7 +6,7 @@ import {faCircleUser} from '@fortawesome/free-solid-svg-icons'
 export default function Login(){
 const [uname,setUname]=useState("");
 const [pwd, setPwd]=useState("");
-const[loginSt,setLogin]=useState((sessionStorage.getItem("logged")!=null?sessionStorage.getItem("logged"):0));
+const { logStatus, setLogStatus } = useContext(DataContext); 
 
 
 function check(){
@@ -16,7 +16,7 @@ function check(){
     
     }if(uname.trim()==="user1"  && pwd.trim() === "test"){
     sessionStorage.setItem("logged",1); 
-    setLogin(1);
+    setLogStatus(1);
 
     } else{
     alert("Invalid credentials");
@@ -25,7 +25,7 @@ function check(){
 
 function logout(){
   sessionStorage.setItem("logged", 0);
-  setLogin(0);
+  setLogStatus(0);
   
 }
 
@@ -50,7 +50,7 @@ var logoutUser=<div>
   return(
 
     <div>
-       <div>{loginSt==0?login:logoutUser}</div>
+       <div>{logStatus==0?login:logoutUser}</div>
     </div>
   );
 }

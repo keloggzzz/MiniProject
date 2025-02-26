@@ -4,6 +4,7 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from './Components/Register';
 import About from './Components/About';
+import Header from './Components/Header'
 import {items} from "./Model/items.json"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -22,9 +23,9 @@ export default function App() {
    const [itemlist,setItemList]=useState(items);
  
   return (
-    <>
     <DataContext.Provider value={{logStatus:logStatus, setLogStatus:setLogStatus, itemlist:itemlist, setItemList:setItemList}}>
     <div>
+    <Header/>
     <NavBar />
     <br></br>
       </div>
@@ -39,7 +40,7 @@ export default function App() {
         </BrowserRouter>
     </div>
     </DataContext.Provider>
-    </>
+    
   )
 }
 

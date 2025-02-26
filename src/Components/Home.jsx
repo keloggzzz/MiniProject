@@ -13,7 +13,7 @@ export default function Home(){
 
 return(
       <div>
-                <h1 className="text-3xl">PixelPop Shop</h1>
+                <h1 className="italic">The Pop Shop</h1>
                 <h2 className="text-2xl text-pink-500">There are currently {length} items available:</h2>
                 <br></br>
        

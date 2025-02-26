@@ -20,7 +20,7 @@ export default function NavBar(){
   
 
   return(
-      <div className='grid grid-cols-8 bg-pink-200 px-10 py-3 border-3 border-pink-500 items-center'>
+      <div className='grid grid-cols-8 bg-pink-200 px-10 py-3 border-3 border-pink-500 items-center w-full shadow-md z-10'>
         <div><a href="/Home">Home</a></div>
         <div><a href="/About">About</a></div>
      
