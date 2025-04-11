@@ -32,12 +32,6 @@ async function check() {
   }
 }
 
-function logout(){
-  sessionStorage.setItem("logged", 0);
-  sessionStorage.setItem("role", -1);
-  setLogStatus(0);
-  
-}
 
 var login=<div className="loginDiv">
    <FontAwesomeIcon icon={faCircleUser} size="5x" /><br></br><br></br>

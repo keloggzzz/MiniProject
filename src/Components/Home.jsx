@@ -33,6 +33,7 @@ export default function Home() {
       // Refresh items
       const updatedItems = await getItems();
       setItems(updatedItems);
+      setTimeout(window.location.reload(), 3000); //make sure screen immediately updates
     }
   }
   
@@ -49,6 +50,8 @@ export default function Home() {
         alert("Failed to add item");
       }
     }
+
+    
 
   return (
     <div>

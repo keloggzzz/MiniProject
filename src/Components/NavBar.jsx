@@ -5,8 +5,10 @@ export default function NavBar(){
   const{logStatus,setLogStatus} = useContext(DataContext);
   
   const updateLogout = () => {
-    sessionStorage.setItem("logged", "0"); // Update sessionStorage on logout
+    sessionStorage.setItem("logged", 0); // Update sessionStorage on logout
     setLogStatus(0);
+    sessionStorage.setItem("role", -1)
+    setTimeout(window.location.reload(), 3000); //make sure screen immediately updates
   };
 
   var loggedIn=<div>
