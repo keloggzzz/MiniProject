@@ -27,7 +27,7 @@ export default function AddItemPopup({ onClose, onAdd }) {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-xl font-bold mb-4 text-pink-500">Add New Item</h2>
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -54,14 +54,17 @@ export default function AddItemPopup({ onClose, onAdd }) {
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
-          <input
-            type="text"
+          <select
             name="rarity"
-            placeholder="Rarity"
             value={formData.rarity}
             onChange={handleChange}
             className="w-full p-2 border rounded"
-          />
+            >
+            <option value="">Select Rarity</option>
+            <option value="common">Common</option>
+            <option value="rare">Rare</option>
+            <option value="legendary">Legendary</option>
+          </select>
           <input
             type="number"
             name="stock"

@@ -60,17 +60,20 @@ async function getItem(id) {
 
 // Delete an item by ID
 async function deleteItem(id) {
+    console.log("Making database call for delete");
   try {
-    const res = await axios.get(host + "/items/deleteItem", {
+    const res = await axios.delete(host + "/items/delItem", {
       headers: {
         "Content-Type": "text/html",
         "Access-Control-Allow-Origin": host,
         "Access-Control-Allow-Headers": "Origin, X-Requested-With",
       },
+      params: { id }, // Send the id as a query parameter
       withCredentials: true,
     });
 
     console.log(res.data.ans);
+    console.log("Deleting #"+id);
     return res.data.ans === "Successfully Deleted";
   } catch (error) {
     console.error("Error deleting item:", error);

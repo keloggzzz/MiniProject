@@ -48,6 +48,7 @@ export default function Home() {
     }else {
         alert("Failed to add item");
       }
+    }
 
   return (
     <div>
@@ -90,7 +91,7 @@ export default function Home() {
                 />
               )}
               <p>{selectedItem.description}</p>
-              {isAdmin && <button className="button" onClick={() => handleDelete(item.id)}>Delete Item</button>}
+              {isAdmin && <button className="button" onClick={() => handleDelete(selectedItem.id)}>Delete Item</button>}
             </div>
           ) : (
             <p>Hover over item to see details</p>
@@ -108,4 +109,3 @@ export default function Home() {
     </div>
   );
 }                       
-}
