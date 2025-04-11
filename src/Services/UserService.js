@@ -3,10 +3,15 @@ import axios from "axios"
 const host = "http://localhost:3000"; 
 
 async function getUsers() {
-    const res = await axios.get(host+"/users/users",{ headers: {
-      'Content-Type': 'text/html',"Access-Control-Allow-Origin":host,
+    const res = await axios.get(host+"/users/users",{ 
+      headers: {
+      'Content-Type': 'text/html',
+      "Access-Control-Allow-Origin":host,
       "Access-Control-Allow-Headers": "Origin, X-Requested-With"
-   }}, { withCredentials: true });
+      }
+    }, { withCredentials: true,
+    });
+
     let list=[];
     res.data.rows.map((tmp,index)=>{
         var user={
@@ -25,10 +30,15 @@ async function getUsers() {
 }
 
 async function getUser() {
-    const res = await axios.get(host+"/users/getUser",{ headers: {
-      'Content-Type': 'text/html',"Access-Control-Allow-Origin":host,
-      "Access-Control-Allow-Headers": "Origin, X-Requested-With"
-   }}, { withCredentials: true });
+    const res = await axios.get(host+"/users/getUser",{ 
+      headers: {
+        'Content-Type': 'text/html',
+        "Access-Control-Allow-Origin":host,
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With"
+        }
+      }, { withCredentials: true,
+      });
+
    let list=[];
    res.data.rows.map((tmp,index)=>{
        var user={
@@ -47,10 +57,15 @@ async function getUser() {
 }
 
 async function deleteUser(id) {
-  try{ const res = await axios.get(host+"/users/delUser?id="+id,{ headers: {
-    'Content-Type': 'text/html',"Access-Control-Allow-Origin":host,
-    "Access-Control-Allow-Headers": "Origin, X-Requested-With"
- }}, { withCredentials: true });
+  try{ const res = await axios.get(host+"/users/delUser?id="+id,{ 
+    headers: {
+      'Content-Type': 'text/html',
+      "Access-Control-Allow-Origin":host,
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With"
+      }
+    }, { withCredentials: true,
+    });
+    
     console.log(res.data.ans);
     return res.data.ans === "Successfully Deleted";
 } catch(error){
@@ -72,4 +87,6 @@ async function loginUser(username, password) {
     }
   }
 
+
+export{getUsers, getUser, deleteUser, loginUser}
 

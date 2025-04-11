@@ -1,13 +1,19 @@
-import {useState, useContext} from "react";
+import {useState, useContext, useEffect} from "react";
 import { DataContext } from "../App";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCircleUser} from '@fortawesome/free-solid-svg-icons'
+import { loginUser } from "../Services/UserService";
 
 export default function Login(){
 const [uname,setUname]=useState("");
 const [pwd, setPwd]=useState("");
 const { logStatus, setLogStatus } = useContext(DataContext); 
+const [isAdmin, setIsAdmin] = useState(false);
 
+useEffect(() => {
+  const role = sessionStorage.getItem("role");
+  setIsAdmin(role === "1");
+}, []);
 
 async function check() {
   if (uname.trim() === "" || pwd.trim() === "") {
@@ -20,6 +26,7 @@ async function check() {
   if (response.success) {
     sessionStorage.setItem("logged", 1);
     setLogStatus(1);
+    sessionStorage.setItem("role", response.user.role)
   } else {
     alert(response.error || "Invalid credentials");
   }
@@ -27,6 +34,7 @@ async function check() {
 
 function logout(){
   sessionStorage.setItem("logged", 0);
+  sessionStorage.setItem("role", -1);
   setLogStatus(0);
   
 }
