@@ -58,5 +58,18 @@ async function deleteUser(id) {
     return false;
 }}
 
+async function loginUser(username, password) {
+    try {
+      const res = await axios.post(host+"/users/login",{
+        username,
+        password,
+      });
+  
+      return res.data; 
+    } catch (error) {
+      console.error("Login error:", error.response?.data || error.message);
+      return { success: false, error: "Login failed" };
+    }
+  }
 
 

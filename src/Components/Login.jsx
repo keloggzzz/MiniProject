@@ -9,18 +9,20 @@ const [pwd, setPwd]=useState("");
 const { logStatus, setLogStatus } = useContext(DataContext); 
 
 
-function check(){
-    if(uname.trim()==="" || pwd.trim() === ""){
-            alert("Please fill out both fields.");
-            return;
-    
-    }if(uname.trim()==="user1"  && pwd.trim() === "test"){
-    sessionStorage.setItem("logged",1); 
-    setLogStatus(1);
+async function check() {
+  if (uname.trim() === "" || pwd.trim() === "") {
+    alert("Please fill out both fields.");
+    return;
+  }
 
-    } else{
-    alert("Invalid credentials");
-    }
+  const response = await loginUser(uname.trim(), pwd.trim());
+
+  if (response.success) {
+    sessionStorage.setItem("logged", 1);
+    setLogStatus(1);
+  } else {
+    alert(response.error || "Invalid credentials");
+  }
 }
 
 function logout(){
