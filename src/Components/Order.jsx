@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { DataContext } from "../App";
+import { addOrder } from "../Services/OrderService";
 
 export default function YourOrder() {
   const { order, setOrder } = useContext(DataContext);
+  const loggedIn = sessionStorage.getItem("logged");
+
 
   // Clear all items
   const clearOrder = () => {
@@ -23,11 +26,11 @@ export default function YourOrder() {
       return;
     }
   
-    const userid = sessionStorage.getItem("user_id");
+    const userId = sessionStorage.getItem("userId");
     const itemIds = order.map(item => item.id);
     const [item1, item2, item3] = itemIds;
-  
-    const res = await addOrder({ userid, item1, item2, item3 });
+    console.log("Placing order for user ", userId)
+    const res = await addOrder({ user_id:userId, item1, item2, item3 });
   
     if (res.success) {
       alert("Order placed!");
@@ -38,13 +41,20 @@ export default function YourOrder() {
     }
   };
 
+  if (loggedIn!=="1") {
+    return (
+      <div className="p-6">
+        <h1 className="text-xl text-red-500">You must be logged in to view an order.</h1>
+      </div>
+    );
+  } else{
   return (
     <div className="flex flex-col justify-center items-center p-4">
       <h1 className="text-2xl text-pink-500 w-1/2">Your Order</h1>
       <br></br>
       {order.length === 0 ? (
         
-        <p>You have not added any items to your order.</p>
+        <p className="text-pink-500">You have not added any items to your order.</p>
       ) : (
         <div className="flex mt-5 justify-center items-center">
           <ul className="text-left bg-pink-100 p-4 rounded shadow-md w-80">
@@ -81,4 +91,5 @@ export default function YourOrder() {
       )}
     </div>
   );
+}
 }

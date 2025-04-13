@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getOrders } from "../Services/OrderService";
 
-export default function AdminOrders() {
+export default function AdminOrder() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function AdminOrders() {
     <div className="p-6">
       <h1 className="text-2xl text-pink-500 mb-4">All Orders</h1>
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <p className="text-pink-500">No orders found.</p>
       ) : (
         <ul className="space-y-4">
           {orders.map((order, index) => (

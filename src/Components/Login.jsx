@@ -27,6 +27,8 @@ async function check() {
     sessionStorage.setItem("logged", 1);
     setLogStatus(1);
     sessionStorage.setItem("role", response.user.role)
+    sessionStorage.setItem("userId", response.user.id)
+    console.log("logged in user: ", sessionStorage.getItem("userId")) //debug for order
   } else {
     alert(response.error || "Invalid credentials");
   }

@@ -37,7 +37,7 @@ export default function NavBar() {
       {/*If user, show your order. If admin, show view order*/}
       <div>
         {role === 1 ? (
-          <a href="/AdminOrders">View Orders</a>
+          <a href="/AdminOrder">View Orders</a>
         ) : (
           <a href="/Order">Your Order</a>
         )}

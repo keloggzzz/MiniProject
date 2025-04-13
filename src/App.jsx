@@ -6,6 +6,7 @@ import Register from './Components/Register';
 import About from './Components/About';
 import Header from './Components/Header'
 import Order from './Components/Order'
+import AdminOrder from './Components/AdminOrder';
 import {items} from "./Model/items.json"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -47,6 +48,7 @@ export default function App() {
             <Route path="/Register" element={<Register/>}/>
             <Route path="/About" element={<About/>}/>
             <Route path="/Order" element={<Order/>}/>
+            <Route path="/AdminOrder" element={<AdminOrder/>}/>
           </Routes>
         </BrowserRouter>
     </div>

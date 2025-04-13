@@ -9,6 +9,8 @@ export default function Home() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAddPopup, setShowAddPopup] = useState(false);
   const { order, setOrder } = useContext(DataContext);
+  const loggedIn = sessionStorage.getItem("logged");
+
 
 
     useEffect(() => {
@@ -90,7 +92,7 @@ export default function Home() {
             >
               <div className="flex justify-between items-center">
                 <span>{item.name}</span>
-                {!isAdmin && (
+                {!isAdmin && loggedIn === "1" &&( //must be logged in, must not be admin
                   <button
                     className="px-2 w-10 h-10 bg-pink-400 hover:bg-pink-500 rounded"
                     onClick={() => handleUserAddToOrder(item)}
