@@ -8,6 +8,8 @@ export default function Home() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAddPopup, setShowAddPopup] = useState(false);
+  const { order, setOrder } = useContext(DataContext);
+
 
     useEffect(() => {
     const role = sessionStorage.getItem("role");
@@ -33,15 +35,16 @@ export default function Home() {
       // Refresh items
       const updatedItems = await getItems();
       setItems(updatedItems);
+      alert("Deleting item: "+selectedItem.name)
       setTimeout(window.location.reload(), 3000); //make sure screen immediately updates
     }
   }
   
-  function handleAdd() {
+  function handleAdminAdd() {
     setShowAddPopup(true);
   }
 
-  async function handleAddItem(itemData) {
+  async function handleAdminAddItem(itemData) {
     const res = await addItem(itemData);
       if (res.success) {
       const updatedItems = await getItems();
@@ -50,6 +53,14 @@ export default function Home() {
         alert("Failed to add item");
       }
     }
+
+    function handleUserAddToOrder(item) {
+      let temp = JSON.parse(sessionStorage.getItem("order")) || [];
+      temp.push(item);
+      sessionStorage.setItem("order", JSON.stringify(temp));
+      alert("Item added to order. Order length is now: " + temp.length);
+    }
+    
 
     
 
@@ -71,30 +82,50 @@ export default function Home() {
         <div id="DisplayItems" className="border-r">
           <h2 className="underline">Items list:</h2>
           <ul className="grid grid-cols-1 gap-y-2 bg-pink-200">
-            {items.map((item) => (
-              <li
-                key={item.id}
-                className="p-2 cursor-pointer hover:bg-pink-300 rounded"
-                onMouseEnter={() => setSelectedItem(item)}
-              >
-                {item.name}
-              </li>
-            ))}
+          {items.map((item) => (
+            <li
+              key={item.id}
+              className="p-2 cursor-pointer hover:bg-pink-300 rounded"
+              onMouseEnter={() => setSelectedItem(item)}
+            >
+              <div className="flex justify-between items-center">
+                <span>{item.name}</span>
+                {!isAdmin && (
+                  <button
+                    className="px-2 w-10 h-10 bg-pink-400 hover:bg-pink-500 rounded"
+                    onClick={() => handleUserAddToOrder(item)}
+                    title="Add to Order"
+                  >
+                    +
+                  </button>
+                )}
+                {isAdmin && <button 
+                  className="px-2 w-10 h-10 bg-red-400 hover:bg-red-500 rounded" 
+                  onClick={() => handleDelete(selectedItem.id)}
+                  title="Delete Item"
+                  >
+                    X
+                  </button>}
+              </div>
+            </li>
+          ))}
           </ul>
         </div>
 
-        <div className="bg-pink-200 p-4 text-2xl">
+        <div className="justify-center items-center bg-pink-200 p-4 text-2xl">
           {selectedItem ? (
             <div>
-              {selectedItem.img && (
-                <img
-                  src={selectedItem.img}
-                  alt={selectedItem.name}
-                  className="w-48 h-48 object-contain mb-4"
-                />
-              )}
-              <p>{selectedItem.description}</p>
-              {isAdmin && <button className="button" onClick={() => handleDelete(selectedItem.id)}>Delete Item</button>}
+              <p className="mb-4">{selectedItem.description}</p>
+                  <div className="flex justify-center">
+                    <img
+                      src={selectedItem.picture || "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"} //uploaded image or placeholder
+                      alt={selectedItem.name}
+                      className="w-64 h-64 object-fill mb-1 border-2 border-pink-500/25 shadow-xl rounded-lg"
+                    />
+                  </div>
+                <p className="mb-4 text-pink-500"> ${selectedItem.price}</p>
+                <p className="mb-4">Rarity: {selectedItem.rarity}</p>
+                <p className="mb-4">Quantity in Stock: {selectedItem.stock}</p>
             </div>
           ) : (
             <p>Hover over item to see details</p>
@@ -102,12 +133,12 @@ export default function Home() {
         </div>
         {isAdmin && (
             <div className="admin-controls">
-                <button className="button" onClick={handleAdd}>Add New Item</button>
+                <button className="button" onClick={handleAdminAdd}>Add New Item</button>
             </div>
         )}
       </div>
       {showAddPopup && (
-        <AddItemPopup onClose={() => setShowAddPopup(false)} onAdd={handleAddItem} />
+        <AddItemPopup onClose={() => setShowAddPopup(false)} onAdd={handleAdminAddItem} />
       )}
     </div>
   );

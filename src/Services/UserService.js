@@ -87,6 +87,17 @@ async function loginUser(username, password) {
     }
   }
 
+  async function addUser(user) {
+    try {
+      const res = await axios.post(host+"/users/addUser", user);
+      return res.data;
+    } catch (error) {
+      console.error("Failed to register user:", error);
+      return { success: false, message: "Registration failed" };
+    }
+  }
 
-export{getUsers, getUser, deleteUser, loginUser}
+
+
+export{getUsers, getUser, deleteUser, loginUser, addUser}
 

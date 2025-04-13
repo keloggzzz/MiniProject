@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { DataContext } from "../App"; 
+import { addUser, loginUser } from "../Services/UserService";
 
 export default function Register() {
     const{logStatus,setLogStatus} = useContext(DataContext);  // Access global login state
@@ -13,6 +14,7 @@ export default function Register() {
     const [uName, setuName] = useState("");
     const [pwd, setPwd] = useState("");
     const [confirmPwd, setConfirmPwd] = useState("");
+    const [adminCode, setAdminCode] = useState("");
 
     const [isRegistered, setIsRegistered] = useState(false); //Display reg page
 
@@ -79,18 +81,42 @@ export default function Register() {
 return true;
     }
 
-    function submit(){
-        if(validate()){
-            setIsRegistered(true); //successfully registered
+    async function submit(){
+        if (validate()) {
+          const role = (adminCode === "1234" ? 1 : 0); //the admin code is 1234. If the user enters this, they will be approved as admin. Otherwise, they are a regular user. 
+          const user = {
+            id,
+            firstname: fName,
+            lastname: lName,
+            email: email,
+            city: city,
+            zipcode: zip,
+            username: uName,
+            password: pwd,
+            role
+          };
+      
+          const regResponse = await addUser(user);
+      
+          if (regResponse.success) {
+            setIsRegistered(true);
             sessionStorage.setItem("logged", 1);
             setLogStatus(1);
             alert(`Registration successful!\n
-                Name: ${fName} ${lName}
-                Username: ${uName}
-                Email: ${email}
-                City: ${city}
-                Zip Code: ${zip}`);
+              Name: ${fName} ${lName}
+              Username: ${uName}
+              Email: ${email}
+              City: ${city}
+              Zip Code: ${zip}
+              Role: ${role === 1 ? "Admin" : "Normal User"}`);
+
+            const logResponse = await loginUser(uName.trim(), pwd.trim());
+
+            sessionStorage.setItem("logged", 1);
+            setLogStatus(1);
+            sessionStorage.setItem("role", logResponse.user.role)
         }
+      }
     }
 
    
@@ -160,6 +186,18 @@ var regForm=<div className="regDiv">
             <label> Re-enter Password</label>
             <br></br>
             <input className="fields" type="password" id="confirmPwd" placeholder="Confirm Password" onChange={(e) => setConfirmPwd(e.target.value)} />
+            <br></br><br></br>
+
+            <label> Admin Code (Optional)</label>
+            <br></br>
+            <input
+            className="fields"
+            type="password"
+            id="adminCode"
+            placeholder="Enter admin code if applicable"
+            value={adminCode}
+            onChange={(e) => setAdminCode(e.target.value)}
+            />
             <br></br><br></br>
         </div>
     

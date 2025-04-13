@@ -6,7 +6,8 @@ export default function AddItemPopup({ onClose, onAdd }) {
     description: "",
     price: "",
     rarity: "",
-    stock: ""
+    stock: "",
+    picture: ""
   });
 
   function handleChange(e) {
@@ -18,7 +19,7 @@ export default function AddItemPopup({ onClose, onAdd }) {
     e.preventDefault();
 
     if (!formData.name || !formData.description || !formData.price || !formData.rarity || !formData.stock) {
-      alert("Please fill out all fields.");
+      alert("Please fill out all fields. Picture may be left blank");
       return;
     }
 
@@ -61,15 +62,23 @@ export default function AddItemPopup({ onClose, onAdd }) {
             className="w-full p-2 border rounded"
             >
             <option value="">Select Rarity</option>
-            <option value="common">Common</option>
-            <option value="rare">Rare</option>
-            <option value="legendary">Legendary</option>
+            <option value="Common">Common</option>
+            <option value="Rare">Rare</option>
+            <option value="Legendary">Legendary</option>
           </select>
           <input
             type="number"
             name="stock"
             placeholder="Stock"
             value={formData.stock}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+          <input
+            type="text"
+            name="picture"
+            placeholder="Enter a URL to a photo"
+            value={formData.picture}
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />

@@ -5,10 +5,11 @@ import Login from "./Components/Login";
 import Register from './Components/Register';
 import About from './Components/About';
 import Header from './Components/Header'
+import Order from './Components/Order'
 import {items} from "./Model/items.json"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {useState, createContext} from "react";
+import {useState, createContext, useEffect} from "react";
 
 export const DataContext=createContext("");
 
@@ -21,9 +22,18 @@ export default function App() {
    }
    const [logStatus,setLogStatus]=useState(login);
    const [itemlist,setItemList]=useState(items);
+   const [order, setOrder] = useState([]);
+
+   useEffect(() => {
+    const storedOrder = sessionStorage.getItem("order");
+    if (storedOrder) {
+      setOrder(JSON.parse(storedOrder));
+    }
+  }, []);
+
  
   return (
-    <DataContext.Provider value={{logStatus:logStatus, setLogStatus:setLogStatus, itemlist:itemlist, setItemList:setItemList}}>
+    <DataContext.Provider value={{logStatus:logStatus, setLogStatus:setLogStatus, itemlist:itemlist, setItemList:setItemList, order:order, setOrder:setOrder }}>
     <div>
     <Header/>
     <NavBar />
@@ -36,6 +46,7 @@ export default function App() {
             <Route path="/Login" element={<Login/>}/>
             <Route path="/Register" element={<Register/>}/>
             <Route path="/About" element={<About/>}/>
+            <Route path="/Order" element={<Order/>}/>
           </Routes>
         </BrowserRouter>
     </div>

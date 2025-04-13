@@ -17,7 +17,7 @@ async function getItems() {
         price: tmp.price,
         rarity: tmp.rarity,
         stock: tmp.stock,
-        img: tmp.img // if you want to display an image
+        picture:tmp.picture
       }));
   
       console.log("All items:", list);
@@ -40,15 +40,15 @@ async function getItem(id) {
       withCredentials: true,
     });
 
-    let list=[];
-    res.data.rows.map((item) => ({
+    let list = res.data.rows.map((item) => ({
       id: item.id,
       name: item.name,
       description: item.description,
       price: item.price,
       rarity: item.rarity,
-      stock: item.stock
-    }));
+      stock: item.stock,
+      picture:item.picture 
+      }));
 
     console.log("Single item:", list);
     return list[0] || null;
