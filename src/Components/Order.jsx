@@ -17,6 +17,27 @@ export default function YourOrder() {
     sessionStorage.setItem("order", JSON.stringify(updatedOrder));
   };
 
+  const placeOrder = async () => {
+    if (order.length > 3) {
+      alert("You can only order up to 3 items.");
+      return;
+    }
+  
+    const userid = sessionStorage.getItem("user_id");
+    const itemIds = order.map(item => item.id);
+    const [item1, item2, item3] = itemIds;
+  
+    const res = await addOrder({ userid, item1, item2, item3 });
+  
+    if (res.success) {
+      alert("Order placed!");
+      setOrder([]);
+      sessionStorage.setItem("order", JSON.stringify([]));
+    } else {
+      alert("Failed to place order.");
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center items-center p-4">
       <h1 className="text-2xl text-pink-500 w-1/2">Your Order</h1>
@@ -48,6 +69,14 @@ export default function YourOrder() {
           className="text-xs mt-4 p-2 bg-red-300 hover:bg-red-400 text-white rounded"
         >
           Clear Order
+        </button>
+      )}
+      {order.length > 0 && (
+        <button
+          onClick={placeOrder}
+          className="text-xs mt-4 p-2 bg-green-300 hover:bg-green-400 text-white rounded"
+        >
+          Place Order
         </button>
       )}
     </div>
