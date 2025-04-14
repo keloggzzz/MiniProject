@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const host = "http://localhost:3000";
+//const host = "http://localhost:3000";
+const host = "https://miniproject-backend-orpin.vercel.app"; 
 
 // Get all items
 async function getItems() { 

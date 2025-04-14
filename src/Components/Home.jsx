@@ -33,13 +33,13 @@ export default function Home() {
   async function handleDelete(id) {
     const confirmDelete = window.confirm("Are you sure you want to delete this item?");
     if (confirmDelete) {
-      // Call your deleteItem service here
       await deleteItem(id);
+
       // Refresh items
       const updatedItems = await getItems();
       setItems(updatedItems);
       alert("Deleting item: "+selectedItem.name)
-      setTimeout(window.location.reload(), 3000); //make sure screen immediately updates
+      setTimeout(window.location.reload(), 3000); //Screen immediately updates
     }
   }
   

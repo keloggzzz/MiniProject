@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOrders } from "../Services/OrderService";
+import { getOrders, deleteOrder } from "../Services/OrderService";
 
 export default function AdminOrder() {
   const [orders, setOrders] = useState([]);
@@ -13,10 +13,23 @@ export default function AdminOrder() {
     fetchOrders();
   }, []);
 
+   {/************************************************DELETE AN ORDER***************************************************/}
+   async function handleDeleteOrder(id) {
+    const confirmDelete = window.confirm("Are you sure you want to delete this order?");
+    if (confirmDelete) {
+      await deleteOrder(id);
+      alert("Deleting Order # "+ id)
+      setTimeout(window.location.reload(), 1000); //make sure screen immediately updates
+    }
+  }
+
 {/************************************************UI DISPLAY***************************************************/}
+if (sessionStorage.getItem("role") === "-1"){
+  return(<div><h1 className="mt-6 text-xl text-red-500">Only Admins Can View Orders.</h1></div>)
+} else{
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-pink-600 mb-6 text-center">Admin Orders</h1>
+      <h1 className="text-3xl font-bold text-pink-600 mb-6 text-center">All Orders</h1>
       {orders.length === 0 ? (
         <p className="text-center text-gray-500">No orders found.</p>
       ) : (
@@ -43,16 +56,26 @@ export default function AdminOrder() {
               {/***************************************CONFIRM ORDER*************************************************/}
                 <button
                   onClick={() => alert("Order confirmed")}
-                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm"
+                  title="confirm Order"
                 >
                   Confirm
                 </button>
               {/********************************************DENY ORDER*************************************************/}
                 <button
                   onClick={() => alert("Order denied")}
-                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm"
+                  title="Deny Order"
                 >
                   Deny
+                </button>
+              {/********************************************DELETE ORDER*************************************************/}
+                <button
+                  onClick={() => handleDeleteOrder(order.id)}
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm ml-80"
+                  title="Delete Order From System"
+                >
+                  Delete
                 </button>
               </div>
             </div>
@@ -61,4 +84,5 @@ export default function AdminOrder() {
       )}
     </div>
   );
+}
 }
