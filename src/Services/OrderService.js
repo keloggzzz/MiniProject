@@ -15,7 +15,7 @@ async function getOrders() {
  async function getOrderById(id) {
   try{
   const res = await axios.get(host + "/orders/getOrder");
-  return res.data.rows[0]; // assuming one order per id
+  return res.data.rows[0];
 } catch (error) {
   console.error("Error fetching order:", error);
   return [];

@@ -3,6 +3,7 @@ import { DataContext } from "../App";
 import { addUser, loginUser } from "../Services/UserService";
 
 export default function Register() {
+{/************************************************USE STATES***************************************************/}
     const{logStatus,setLogStatus} = useContext(DataContext);  // Access global login state
 
     const [fName, setfName] = useState("");
@@ -20,7 +21,7 @@ export default function Register() {
 
    
 
-
+{/*****************************************INPUT VALIDATION********************************/}
     function validate(){
         // FName and lName must ust not contain numbers
         let nameRegex = /^[A-Za-z]+$/;
@@ -80,7 +81,7 @@ export default function Register() {
 
 return true;
     }
-
+{/************************************************SUBMIT INPUT***************************************************/}
     async function submit(){
         if (validate()) {
           const role = (adminCode === "1234" ? 1 : 0); //the admin code is 1234. If the user enters this, they will be approved as admin. Otherwise, they are a regular user. 
@@ -119,7 +120,7 @@ return true;
       }
     }
 
-   
+{/************************************************REGISTRATION SUCCESS SCREEN***************************************************/}
 var regConfirmation=<div className="regDiv">
     <div>
         <h2>Registration Successful! </h2>
@@ -128,7 +129,7 @@ var regConfirmation=<div className="regDiv">
         
     </div>
 </div>
-
+{/************************************************REGISTRATION FORM***************************************************/}
 var regForm=<div className="regDiv">
     <h1>Sign Up</h1>
     <form action="" method="post">
@@ -210,7 +211,7 @@ var regForm=<div className="regDiv">
     </form>
 </div>
 
-
+{/************************************************UI DISPLAY***************************************************/}
     return(<div>{isRegistered?regConfirmation:regForm}</div>
         
     );

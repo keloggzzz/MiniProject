@@ -9,12 +9,13 @@ export default function AddItemPopup({ onClose, onAdd }) {
     stock: "",
     picture: ""
   });
-
+{/************************************************HANDLE ALL INPUT CHANGES**************************************************/}
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
+  {/********************************************HANDLE SUBMISSION**************************************************/}
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -27,11 +28,14 @@ export default function AddItemPopup({ onClose, onAdd }) {
     onClose();       // Close the popup
   }
 
+{/************************************************UI DISPLAY***************************************************/}
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-xl font-bold mb-4 text-pink-500">Add New Item</h2>
         <form onSubmit={handleSubmit} className="space-y-3">
+      {/****************************NAME***************************************/}
           <input
             type="text"
             name="name"
@@ -40,6 +44,7 @@ export default function AddItemPopup({ onClose, onAdd }) {
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
+      {/****************************DESC***************************************/}
           <textarea
             name="description"
             placeholder="Description"
@@ -47,6 +52,7 @@ export default function AddItemPopup({ onClose, onAdd }) {
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
+      {/****************************PRICE***************************************/}
           <input
             type="number"
             name="price"
@@ -55,6 +61,7 @@ export default function AddItemPopup({ onClose, onAdd }) {
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
+      {/****************************RARITY***************************************/}
           <select
             name="rarity"
             value={formData.rarity}
@@ -66,6 +73,7 @@ export default function AddItemPopup({ onClose, onAdd }) {
             <option value="Rare">Rare</option>
             <option value="Legendary">Legendary</option>
           </select>
+      {/****************************STOCK AMOUNT***************************************/}
           <input
             type="number"
             name="stock"
@@ -74,6 +82,7 @@ export default function AddItemPopup({ onClose, onAdd }) {
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
+      {/****************************PICTURE***************************************/}
           <input
             type="text"
             name="picture"
@@ -82,7 +91,7 @@ export default function AddItemPopup({ onClose, onAdd }) {
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
-
+{/****************************CANCEL & ADD BUTTONS***************************************/}
           <div className="flex justify-end gap-2">
             <button type="button" onClick={onClose} className="bg-gray-400 px-4 py-2 rounded text-white">
               Cancel

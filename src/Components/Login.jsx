@@ -10,11 +10,13 @@ const [pwd, setPwd]=useState("");
 const { logStatus, setLogStatus } = useContext(DataContext); 
 const [isAdmin, setIsAdmin] = useState(false);
 
+{/************************************************USED TO CHANGE DISPLAY FOR ADMIN***************************************************/}
 useEffect(() => {
   const role = sessionStorage.getItem("role");
   setIsAdmin(role === "1");
 }, []);
 
+{/************************************************CHECK LOGIN CREDS***************************************************/}
 async function check() {
   if (uname.trim() === "" || pwd.trim() === "") {
     alert("Please fill out both fields.");
@@ -34,7 +36,7 @@ async function check() {
   }
 }
 
-
+{/************************************************LOGIN FORM***************************************************/}
 var login=<div className="loginDiv">
    <FontAwesomeIcon icon={faCircleUser} size="5x" /><br></br><br></br>
    Username:
@@ -48,11 +50,13 @@ var login=<div className="loginDiv">
   <input className="button" type="button" value="Sign in" onClick={check}/>
 </div>
 
-
+{/************************************************SHOW IF LOGGED IN***************************************************/}
 var logoutUser=<div>
 <h2 className="text-pink-500">You are logged in!</h2>
 <br></br>
 </div>
+
+{/************************************************UI DISPLAY***************************************************/}
   return(
 
     <div>

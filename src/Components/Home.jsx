@@ -12,13 +12,13 @@ export default function Home() {
   const loggedIn = sessionStorage.getItem("logged");
 
 
-
+{/************************************************USED TO CHANGE DISPLAY FOR ADMIN***************************************************/}
     useEffect(() => {
     const role = sessionStorage.getItem("role");
     setIsAdmin(role === "1");
     }, []);
 
-  // Fetch items on component mount
+{/************************************************FETCH ITEMS***************************************************/}
   useEffect(() => {
     async function fetchData() {
       const fetchedItems = await getItems();
@@ -29,6 +29,7 @@ export default function Home() {
     fetchData();
   }, []);
 
+{/************************************************DELETE ITEM (ADMIN)***************************************************/}
   async function handleDelete(id) {
     const confirmDelete = window.confirm("Are you sure you want to delete this item?");
     if (confirmDelete) {
@@ -42,11 +43,12 @@ export default function Home() {
     }
   }
   
-  function handleAdminAdd() {
+{/************************************************ADD NEW ITEM (ADMIN)***************************************************/}
+  function AdminAddPopup() {
     setShowAddPopup(true);
   }
 
-  async function handleAdminAddItem(itemData) {
+  async function AdminAddItem(itemData) {
     const res = await addItem(itemData);
       if (res.success) {
       const updatedItems = await getItems();
@@ -56,16 +58,17 @@ export default function Home() {
       }
     }
 
-    function handleUserAddToOrder(item) {
+{/************************************************ADD TO ORDER (NORMAL USER)***************************************************/}
+    function UserAddToOrder(item) {
       let temp = JSON.parse(sessionStorage.getItem("order")) || [];
       temp.push(item);
       sessionStorage.setItem("order", JSON.stringify(temp));
-      alert("Item added to order. Order length is now: " + temp.length);
+      alert("Item added to order. Order length is now: " + temp.length+"\n Final order limit is 3");
     }
     
 
     
-
+{/************************************************UI DISPLAY***************************************************/}
   return (
     <div>
       <br />
@@ -73,10 +76,10 @@ export default function Home() {
       <br />
       <h1 className="italic border-2 rounded-lg">Featured Items</h1>
       <h2 className="text-xl italic text-pink-500">
-        These {items.length} items are currently trending:
+        These {items.length} items are currently available:
       </h2>
       <br />
-
+    {/****************************ITEM LIST***********************************/}
       <div
         id="grid"
         className="grid grid-cols-2 bg-pink-200 rounded-lg shadow-lg border-pink-400 border-3"
@@ -90,17 +93,19 @@ export default function Home() {
               className="p-2 cursor-pointer hover:bg-pink-300 rounded"
               onMouseEnter={() => setSelectedItem(item)}
             >
+          {/************************************************USER ADD TO ORDER***************************************************/}
               <div className="flex justify-between items-center">
                 <span>{item.name}</span>
                 {!isAdmin && loggedIn === "1" &&( //must be logged in, must not be admin
                   <button
                     className="px-2 w-10 h-10 bg-pink-400 hover:bg-pink-500 rounded"
-                    onClick={() => handleUserAddToOrder(item)}
+                    onClick={() => UserAddToOrder(item)}
                     title="Add to Order"
                   >
                     +
                   </button>
                 )}
+            {/************************************************ADMIN DELETE ITEM***************************************************/}
                 {isAdmin && <button 
                   className="px-2 w-10 h-10 bg-red-400 hover:bg-red-500 rounded" 
                   onClick={() => handleDelete(selectedItem.id)}
@@ -113,7 +118,7 @@ export default function Home() {
           ))}
           </ul>
         </div>
-
+    {/************************************************SHOW ITEM DESCRIPTIONS***************************************************/}
         <div className="justify-center items-center bg-pink-200 p-4 text-2xl">
           {selectedItem ? (
             <div>
@@ -133,14 +138,15 @@ export default function Home() {
             <p>Hover over item to see details</p>
           )}
         </div>
+      {/************************************************ADMIN ADD NEW ITEM POPUP***************************************************/}
         {isAdmin && (
             <div className="admin-controls">
-                <button className="button" onClick={handleAdminAdd}>Add New Item</button>
+                <button className="button" onClick={AdminAddPopup}>Add New Item</button>
             </div>
         )}
       </div>
       {showAddPopup && (
-        <AddItemPopup onClose={() => setShowAddPopup(false)} onAdd={handleAdminAddItem} />
+        <AddItemPopup onClose={() => setShowAddPopup(false)} onAdd={AdminAddItem} />
       )}
     </div>
   );
