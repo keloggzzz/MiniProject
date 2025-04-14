@@ -37,18 +37,40 @@ async function check() {
 }
 
 {/************************************************LOGIN FORM***************************************************/}
-var login=<div className="loginDiv">
-   <FontAwesomeIcon icon={faCircleUser} size="5x" /><br></br><br></br>
-   Username:
-   <input className="fields" type="text" id="uname" value={uname} placeholder="Enter username" onChange={(e)=>{setUname(e.target.value)}}/>
-   <br></br><br></br>
-   
-   Password:
-   <input className="fields" type="password" id="pwd" value={pwd} placeholder="Enter password" onChange={(e)=>{setPwd(e.target.value)}}/>
-  <br></br><br></br>
-
-  <input className="button" type="button" value="Sign in" onClick={check}/>
-</div>
+var login = (
+  <div className="loginDiv">
+    <FontAwesomeIcon icon={faCircleUser} size="5x" />
+    <br></br>
+    <br></br>
+    Username:
+    <input
+      className="fields"
+      type="text"
+      id="uname"
+      value={uname}
+      placeholder="Enter username"
+      onChange={(e) => {
+        setUname(e.target.value);
+      }}
+    />
+    <br></br>
+    <br></br>
+    Password:
+    <input
+      className="fields"
+      type="password"
+      id="pwd"
+      value={pwd}
+      placeholder="Enter password"
+      onChange={(e) => {
+        setPwd(e.target.value);
+      }}
+    />
+    <br></br>
+    <br></br>
+    <input className="button" type="button" value="Sign in" onClick={check} />
+  </div>
+);
 
 {/************************************************SHOW IF LOGGED IN***************************************************/}
 var logoutUser=<div>

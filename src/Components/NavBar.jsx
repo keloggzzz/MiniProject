@@ -9,7 +9,7 @@ export default function NavBar() {
   const updateLogout = () => {
     sessionStorage.setItem("logged", 0);
     setLogStatus(0);
-    sessionStorage.setItem("role", -1);
+    sessionStorage.setItem("role", -1); //reset role
     setTimeout(() => window.location.reload(), 1000);
   };
 

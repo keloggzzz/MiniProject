@@ -57,7 +57,7 @@ if (sessionStorage.getItem("role") === "-1"){
                 <button
                   onClick={() => alert("Order confirmed")}
                   className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm"
-                  title="confirm Order"
+                  title="Confirm Order"
                 >
                   Confirm
                 </button>

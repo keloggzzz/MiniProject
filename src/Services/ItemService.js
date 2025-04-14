@@ -92,4 +92,14 @@ async function addItem(item) {
     }
   }
 
-export { getItems, getItem, deleteItem, addItem };
+async function updateItem(item){
+  try {
+    const res = await axios.put(host + "/items/updateItem",item);
+    return res.data;
+  } catch (error) {
+    console.error("Error updating item:", error);
+    return null;
+  }
+}
+
+export { getItems, getItem, deleteItem, addItem, updateItem };
