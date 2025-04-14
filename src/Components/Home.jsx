@@ -63,7 +63,7 @@ export default function Home() {
       let temp = JSON.parse(sessionStorage.getItem("order")) || [];
       temp.push(item);
       sessionStorage.setItem("order", JSON.stringify(temp));
-      alert("Item added to order. Order length is now: " + temp.length+"\n Final order limit is 3");
+      alert("Item added to order. \nOrder length is now: " + temp.length+"\nFinal order limit is 3");
     }
     
 

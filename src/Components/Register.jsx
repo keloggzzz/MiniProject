@@ -84,7 +84,9 @@ return true;
 {/************************************************SUBMIT INPUT***************************************************/}
     async function submit(){
         if (validate()) {
-          const role = (adminCode === "1234" ? 1 : 0); //the admin code is 1234. If the user enters this, they will be approved as admin. Otherwise, they are a regular user. 
+          const role = (adminCode === "1234" ? 1 : 0); 
+          //The admin code is 1234. 
+          //If the user enters this, they will be approved as admin. Otherwise, they are a regular user. 
           const user = {
             id,
             firstname: fName,
